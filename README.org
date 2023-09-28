@@ -1,4 +1,4 @@
-#+TITLE:     GPU-based eQTL analysis: Preparing input data
+#+TITLE:     GPU-based eQTL analysis pipeline: BrainSEQ example
 #+AUTHOR:    Kynon J. Benjamin, Ph.D
 #+EMAIL:     kynonjade.benjamin@libd.org
 #+LANGUAGE:  en
@@ -22,15 +22,14 @@ data with some adaptation. However, I will be focusing on
 expression QTL (eQTL) for the remainder of this tutorial.
 
 ** Why eQTL analysis
+[[./img/eqtl_summary.v2.png]]
+
 eQTL are genetic variants that explain variation in expression levels.
 
-| [[./img/eqtl_summary.v2.png]] | Translate GWAS to biology                  |
-|                           | Useful for gene prioritization             |
-|                           | Detection of novel gene-trait associations |
-|                           | Inferring direction of association         |
-
-#+begin_src txtimg :results none
-#+end_src
+- Translate GWAS to biology
+- Useful for gene prioritization             
+- Detection of novel gene-trait associations 
+- Inferring direction of association         
 
 Therefore, to test for these associations, we need two main information
 from the same samples: 1) expression and 2) genotypes.
@@ -85,6 +84,8 @@ eQTL analysis compared with neurotypical controls
 Now lets extract phenotype data for the caudate
 nucleus.
 
+Let's check to make sure we're in the right place.
+
 #+begin_src sh
   pwd
 #+end_src
@@ -93,12 +94,14 @@ nucleus.
 : /dcs04/lieber/statsgen/jbenjami/tutorials/eqtl_analysis_tutorial
 
 #+begin_src R :results output
-  setwd('/dcs04/lieber/statsgen/jbenjami/tutorials/eqtl_analysis_tutorial')
   getwd()
 #+end_src
 
-#+RESULTS[bc0abca879696aa55a478e7be0e4830c2c6e58e3]:
+#+RESULTS[f1451618f5d35082b206baf9c56456e8281b4871]:
 : [1] "/dcs04/lieber/statsgen/jbenjami/tutorials/eqtl_analysis_tutorial"
+
+Now, we'll download the gene-level data from the eQTL data
+browser website.
 
 #+BEGIN_SRC R :results output
   caud8_file <- url(paste0("https://caudate-eqtl.s3.us-west-2.amazonaws.com/",
@@ -117,6 +120,9 @@ nucleus.
 : rowData names(10): Length gencodeID ... NumTx gencodeTx
 : colnames(464): R12864 R12865 ... R13503 R13504
 : colData names(71): BrNum RNum ... RNum.1 FlowCell
+
+With the data downloaded, we can extract the phenotype information.
+First, I'll load in a helpful function from [[https://github.com/LieberInstitute/jaffelab][jaffelab]].
 
 #+begin_src R :results silent
 					  # Function from jaffelab github
@@ -145,6 +151,8 @@ nucleus.
   } 
 #+end_src
 
+Using SummarizedExperiment, I can select just the variables
+we want to keep.
 #+begin_src R :results output
   suppressMessages(library(SummarizedExperiment))
   fields   <- c('BrNum', 'RNum', 'Region', 'RIN', 'Age', 'Sex', 'Race', 
@@ -157,6 +165,8 @@ nucleus.
 
 #+RESULTS[514e70ff196776cb36469e2d0b4e55315b46526b]:
 : [1] 464  11
+
+Now, let's take a look at it.
 
 #+begin_src R :results output
   head(pheno, 2)
@@ -173,11 +183,6 @@ nucleus.
 : R12864          AA      Schizo 0.0326539 8.67516e-05       0.909350
 : R12865          AA      Schizo 0.0197874 6.97668e-05       0.873484
 
-As we want to use as many samples as possible, we will only do some
-basic filtering for our study design:
-  1. Including only individual age > 13, and
-  2. Limit to self-identified Black and White Americans
-
 #+begin_src R :results output
   table(pheno$Dx, pheno$Race)
 #+end_src
@@ -188,6 +193,11 @@ basic filtering for our study design:
 :   Bipolar   4   40
 :   Control 134  132
 :   Schizo   83   71
+
+As we want to use as many samples as possible, we will only do some
+basic filtering for our study design:
+  1. Including only individual age > 13, and
+  2. Limit to self-identified Black and White Americans
 
 #+begin_src R :results output
   pheno <- dplyr::filter(as.data.frame(pheno), Age > 13, Race %in% c("AA", "CAUC"))
