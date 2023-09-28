@@ -23,14 +23,19 @@ expression QTL (eQTL) for the remainder of this tutorial.
 
 ** Why eQTL analysis
 eQTL are genetic variants that explain variation in expression levels.
- - Translate GWAS to biology
- - Useful for gene prioritization
- - Detection of novel gene-trait associations
- - Inferring direction of association
 
-#+CAPTION: Example of eQTL
-#+NAME: fig:eqtl_summary
-[[./img/eqtl_summary.png]]
+#+LATEX_HEADER: \usepackage{dejavu}\renewcommand*\familydefault{\ttdefault}
+
+[[file:./img/eqtl_summary.png]] $\parbox{5cm}{\normalfont
+
+\begin{itemize}
+\item Translate GWAS to biology
+\item Useful for gene prioritization
+\item Detection of novel gene-trait associations
+\item Inferring direction of association
+\end{itemize}
+}$
+
 
 Therefore, to test for these associations, we need two main information
 from the same samples: 1) expression and 2) genotypes.
@@ -381,6 +386,38 @@ End time: Thu Sep 28 17:14:27 2023
 	 --extract tmp/genotypes.prune.in --make-bed \
 	 --maf 0.05 --out tmp/TOPMed_LIBD_AA_EA
 #+end_src
+
+#+RESULTS:
+#+begin_example
+,**** Filtered genotypes ****
+PLINK v2.00a3LM 64-bit Intel (2 Mar 2021)      www.cog-genomics.org/plink/2.0/
+(C) 2005-2021 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to tmp/TOPMed_LIBD_AA_EA.log.
+Options in effect:
+  --bfile input/TOPMed_LIBD_AA_EA
+  --extract tmp/genotypes.prune.in
+  --maf 0.05
+  --make-bed
+  --out tmp/TOPMed_LIBD_AA_EA
+
+Start time: Thu Sep 28 17:24:44 2023
+515980 MiB RAM detected; reserving 257990 MiB for main workspace.
+Allocated 25827 MiB successfully, after larger attempt(s) failed.
+Using up to 48 threads (change this with --threads).
+1938 samples (725 females, 1209 males, 4 ambiguous; 1938 founders) loaded from
+input/TOPMed_LIBD_AA_EA.fam.
+7678274 variants loaded from input/TOPMed_LIBD_AA_EA.bim.
+Note: No phenotype data present.
+--extract: 902787 variants remaining.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99%done.
+235754 variants removed due to allele frequency threshold(s)
+(--maf/--max-maf/--mac/--max-mac).
+667033 variants remaining after main filters.
+Writing tmp/TOPMed_LIBD_AA_EA.fam ... done.
+Writing tmp/TOPMed_LIBD_AA_EA.bim ... done.
+Writing tmp/TOPMed_LIBD_AA_EA.bed ... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%69%70%71%72%73%74%75%76%77%78%79%80%81%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99%done.
+End time: Thu Sep 28 17:24:58 2023
+#+end_example
 
 #+begin_src sh :results output
   echo "**** Run MDS with PLINK ****"
