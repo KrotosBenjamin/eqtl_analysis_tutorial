@@ -1,0 +1,14 @@
+SUCCESS
+nohup.out
+.ipynb_checkpoints/*
+*/.ipynb_checkpoints
+.ipynb_checkpoints
+input/*
+inputs/*
+*~
+*/dep/*
+gene2go
+go-basic.obo
+.pybiomart.sqlite
+developmental_stuff
+developmental_stuff/*
