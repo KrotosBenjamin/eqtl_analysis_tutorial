@@ -24,16 +24,12 @@ expression QTL (eQTL) for the remainder of this tutorial.
 ** Why eQTL analysis
 eQTL are genetic variants that explain variation in expression levels.
 
-#+CAPTION: eQTL summary
-#+NAME: fig:eqtl-summary
-#+ATTR_HTML: :width 300px
-[[./img/eqtl_summary.v2.png]]
+| [[./img/eqtl_summary.v2.png]] | Translate GWAS to biology                  |
+|                           | Useful for gene prioritization             |
+|                           | Detection of novel gene-trait associations |
+|                           | Inferring direction of association         |
 
 #+begin_src txtimg :results none
-- Translate GWAS to biology
-- Useful for gene prioritization
-- Detection of novel gene-trait associations
-- Inferring direction of association
 #+end_src
 
 Therefore, to test for these associations, we need two main information
