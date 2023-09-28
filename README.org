@@ -27,7 +27,7 @@ eQTL are genetic variants that explain variation in expression levels.
 #+CAPTION: eQTL summary
 #+NAME: fig:eqtl-summary
 #+ATTR_HTML: :width 300px
-file:./img/eqtl_summary.png
+[[./img/eqtl_summary.png]]
 
 - Translate GWAS to biology
 - Useful for gene prioritization
