@@ -1,17 +1,17 @@
 
 # Table of Contents
 
--   [Pre-process data and align samples](#orgf48d748)
-    -   [Sample selection and GCT format](#orge8c85d7)
-        -   [Organize data](#orgf987308)
-        -   [Python session information](#orgd9db703)
-    -   [Genotype formatting](#org26b1ca8)
-    -   [Expression formatting](#orgb0f3ca9)
-    -   [Generate covariates](#org185028d)
+-   [Pre-process data and align samples](#orge4cf351)
+    -   [Sample selection and GCT format](#orgd34dc39)
+        -   [Organize data](#org90e95b9)
+        -   [Python session information](#orgf1ca6f3)
+    -   [Genotype formatting](#orgc1f251c)
+    -   [Expression formatting](#orga08fa60)
+    -   [Generate covariates](#org1d714fa)
 
 
 
-<a id="orgf48d748"></a>
+<a id="orge4cf351"></a>
 
 # Pre-process data and align samples
 
@@ -22,7 +22,7 @@ section focus is getting the input data into a format that
 will work with tensorQTL.
 
 
-<a id="orge8c85d7"></a>
+<a id="orgd34dc39"></a>
 
 ## Sample selection and GCT format
 
@@ -40,7 +40,7 @@ the right format.
 Example script is provided: <./scripts/01.prepare_gct.py>.
 
 
-<a id="orgf987308"></a>
+<a id="org90e95b9"></a>
 
 ### Organize data
 
@@ -123,7 +123,7 @@ Now, we'll extract the selected samples.
       .to_csv('data/vcf_chr_list.txt', header=False, index=None)
 
 
-<a id="orgd9db703"></a>
+<a id="orgf1ca6f3"></a>
 
 ### Python session information
 
@@ -140,7 +140,7 @@ Now, we'll extract the selected samples.
     Session information updated at 2023-09-28 11:34
 
 
-<a id="org26b1ca8"></a>
+<a id="orgc1f251c"></a>
 
 ## Genotype formatting
 
@@ -180,7 +180,7 @@ I'll be working on JHPCE for this. This should also order the samples.
     End time: Fri Sep 29 10:43:04 2023
 
 
-<a id="orgb0f3ca9"></a>
+<a id="orga08fa60"></a>
 
 ## Expression formatting
 
@@ -206,6 +206,7 @@ The modified helper script takes the following input:
     usage: 02.prepare_expression.py [-h] [-o OUTPUT_DIR]
                                     [--sample_id_list SAMPLE_ID_LIST]
                                     [--feature FEATURE] [--bed_file BED_FILE]
+                                    [--flip]
                                     norm_gct sample_participant_lookup
                                     vcf_chr_list prefix
     
@@ -226,6 +227,7 @@ The modified helper script takes the following input:
                             File listing sample IDs to include
       --feature FEATURE     gene, transcript or exon
       --bed_file BED_FILE   this is the bed file annotation
+      --flip                Flip TSS using strand information
 
     module load htslib
     module load samtools
@@ -239,7 +241,7 @@ The modified helper script takes the following input:
     Loading expression data
     Map data
       * 22465 genes.
-    bed_template_df.shape (22465, 4)
+    bed_template_df.shape (22465, 5)
       * 22398 genes remain after removing contigs absent from VCF.
     Writing BED file
 
@@ -264,7 +266,7 @@ The modified helper script takes the following input:
 </table>
 
 
-<a id="org185028d"></a>
+<a id="org1d714fa"></a>
 
 ## Generate covariates
 
