@@ -1,17 +1,17 @@
 
 # Table of Contents
 
--   [Pre-process data and align samples](#org5aa9ab1)
-    -   [Sample selection and GCT format](#org0c0cfa8)
-        -   [Organize data](#orgf2da91c)
-        -   [Python session information](#org41faec2)
-    -   [Genotype formatting](#org0f31a4d)
-    -   [Expression formatting](#org716e3ce)
-    -   [Generate covariates](#org77a8e66)
+-   [Pre-process data and align samples](#orgf48d748)
+    -   [Sample selection and GCT format](#orge8c85d7)
+        -   [Organize data](#orgf987308)
+        -   [Python session information](#orgd9db703)
+    -   [Genotype formatting](#org26b1ca8)
+    -   [Expression formatting](#orgb0f3ca9)
+    -   [Generate covariates](#org185028d)
 
 
 
-<a id="org5aa9ab1"></a>
+<a id="orgf48d748"></a>
 
 # Pre-process data and align samples
 
@@ -22,7 +22,7 @@ section focus is getting the input data into a format that
 will work with tensorQTL.
 
 
-<a id="org0c0cfa8"></a>
+<a id="orge8c85d7"></a>
 
 ## Sample selection and GCT format
 
@@ -40,7 +40,7 @@ the right format.
 Example script is provided: <./scripts/01.prepare_gct.py>.
 
 
-<a id="orgf2da91c"></a>
+<a id="orgf987308"></a>
 
 ### Organize data
 
@@ -123,7 +123,7 @@ Now, we'll extract the selected samples.
       .to_csv('data/vcf_chr_list.txt', header=False, index=None)
 
 
-<a id="org41faec2"></a>
+<a id="orgd9db703"></a>
 
 ### Python session information
 
@@ -140,7 +140,7 @@ Now, we'll extract the selected samples.
     Session information updated at 2023-09-28 11:34
 
 
-<a id="org0f31a4d"></a>
+<a id="org26b1ca8"></a>
 
 ## Genotype formatting
 
@@ -154,422 +154,33 @@ I'll be working on JHPCE for this. This should also order the samples.
            --keep data/keepFam.txt --make-bed \
            --out input/protected_data/genotypes
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    PLINK v2.00a3LM 64-bit Intel (17 Dec 2021)     www.cog-genomics.org/plink/2.0/
+    (C) 2005-2021 Shaun Purcell, Christopher Chang   GNU General Public License v3
+    Logging to input/protected_data/genotypes.log.
+    Options in effect:
+      --bfile input/TOPMed_LIBD_AA_EA
+      --keep data/keepFam.txt
+      --make-bed
+      --out input/protected_data/genotypes
+    
+    Start time: Fri Sep 29 10:42:38 2023
+    772704 MiB RAM detected; reserving 386352 MiB for main workspace.
+    Allocated 38678 MiB successfully, after larger attempt(s) failed.
+    Using up to 40 threads (change this with --threads).
+    1938 samples (725 females, 1209 males, 4 ambiguous; 1938 founders) loaded from
+    input/TOPMed_LIBD_AA_EA.fam.
+    7678274 variants loaded from input/TOPMed_LIBD_AA_EA.bim.
+    Note: No phenotype data present.
+    --keep: 435 samples remaining.
+    435 samples (141 females, 294 males; 435 founders) remaining after main
+    filters.
+    Writing input/protected_data/genotypes.fam ... done.
+    Writing input/protected_data/genotypes.bim ... done.
+    Writing input/protected_data/genotypes.bed ... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99%done.
+    End time: Fri Sep 29 10:43:04 2023
 
 
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-right" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">PLINK</td>
-<td class="org-left">v2.00a3LM</td>
-<td class="org-left">64-bit</td>
-<td class="org-left">Intel</td>
-<td class="org-left">(17</td>
-<td class="org-left">Dec</td>
-<td class="org-right">2021)</td>
-<td class="org-left">www.cog-genomics.org/plink/2.0/</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(C)</td>
-<td class="org-left">2005-2021</td>
-<td class="org-left">Shaun</td>
-<td class="org-left">Purcell,</td>
-<td class="org-left">Christopher</td>
-<td class="org-left">Chang</td>
-<td class="org-right">GNU</td>
-<td class="org-left">General</td>
-<td class="org-left">Public</td>
-<td class="org-left">License</td>
-<td class="org-left">v3</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">Logging</td>
-<td class="org-left">to</td>
-<td class="org-left">input/protected_data/genotypes.log.</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">Options</td>
-<td class="org-left">in</td>
-<td class="org-left">effect:</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">&#x2013;bfile</td>
-<td class="org-left">input/TOPMed_LIBD_AA_EA</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">&#x2013;keep</td>
-<td class="org-left">data/keepFam.txt</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">&#x2013;make-bed</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">&#x2013;out</td>
-<td class="org-left">input/protected_data/genotypes</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">Start</td>
-<td class="org-left">time:</td>
-<td class="org-left">Thu</td>
-<td class="org-left">Sep</td>
-<td class="org-left">28</td>
-<td class="org-left">11:29:56</td>
-<td class="org-right">2023</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">499853</td>
-<td class="org-left">MiB</td>
-<td class="org-left">RAM</td>
-<td class="org-left">detected;</td>
-<td class="org-left">reserving</td>
-<td class="org-left">249926</td>
-<td class="org-right">MiB</td>
-<td class="org-left">for</td>
-<td class="org-left">main</td>
-<td class="org-left">workspace.</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">Allocated</td>
-<td class="org-left">7915</td>
-<td class="org-left">MiB</td>
-<td class="org-left">successfully,</td>
-<td class="org-left">after</td>
-<td class="org-left">larger</td>
-<td class="org-right">attempt(s)</td>
-<td class="org-left">failed.</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">Using</td>
-<td class="org-left">up</td>
-<td class="org-left">to</td>
-<td class="org-left">64</td>
-<td class="org-left">threads</td>
-<td class="org-left">(change</td>
-<td class="org-right">this</td>
-<td class="org-left">with</td>
-<td class="org-left">&#x2013;threads).</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">1938</td>
-<td class="org-left">samples</td>
-<td class="org-left">(725</td>
-<td class="org-left">females,</td>
-<td class="org-left">1209</td>
-<td class="org-left">males,</td>
-<td class="org-right">4</td>
-<td class="org-left">ambiguous;</td>
-<td class="org-left">1938</td>
-<td class="org-left">founders)</td>
-<td class="org-left">loaded</td>
-<td class="org-left">from</td>
-</tr>
-
-
-<tr>
-<td class="org-left">input/TOPMed_LIBD_AA_EA.fam.</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">7678274</td>
-<td class="org-left">variants</td>
-<td class="org-left">loaded</td>
-<td class="org-left">from</td>
-<td class="org-left">input/TOPMed_LIBD_AA_EA.bim.</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">Note:</td>
-<td class="org-left">No</td>
-<td class="org-left">phenotype</td>
-<td class="org-left">data</td>
-<td class="org-left">present.</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">&#x2013;keep:</td>
-<td class="org-left">435</td>
-<td class="org-left">samples</td>
-<td class="org-left">remaining.</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">435</td>
-<td class="org-left">samples</td>
-<td class="org-left">(141</td>
-<td class="org-left">females,</td>
-<td class="org-left">294</td>
-<td class="org-left">males;</td>
-<td class="org-right">435</td>
-<td class="org-left">founders)</td>
-<td class="org-left">remaining</td>
-<td class="org-left">after</td>
-<td class="org-left">main</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">filters.</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">Writing</td>
-<td class="org-left">input/protected_data/genotypes.fam</td>
-<td class="org-left">&#x2026;</td>
-<td class="org-left">done.</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">Writing</td>
-<td class="org-left">input/protected_data/genotypes.bim</td>
-<td class="org-left">&#x2026;</td>
-<td class="org-left">done.</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">Writing</td>
-<td class="org-left">input/protected_data/genotypes.bed</td>
-<td class="org-left">&#x2026;</td>
-<td class="org-left">0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99%done.</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">End</td>
-<td class="org-left">time:</td>
-<td class="org-left">Thu</td>
-<td class="org-left">Sep</td>
-<td class="org-left">28</td>
-<td class="org-left">11:30:31</td>
-<td class="org-right">2023</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-
-
-<a id="org716e3ce"></a>
+<a id="orgb0f3ca9"></a>
 
 ## Expression formatting
 
@@ -592,303 +203,29 @@ The modified helper script takes the following input:
 
     python3 ./scripts/02.prepare_expression.py --help
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">usage:</td>
-<td class="org-left">02.prepare_expression.py</td>
-<td class="org-left">[-h]</td>
-<td class="org-left">[-o</td>
-<td class="org-left">OUTPUT_DIR]</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">[&#x2013;sample_id_list</td>
-<td class="org-left">SAMPLE_ID_LIST]</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">[&#x2013;feature</td>
-<td class="org-left">FEATURE]</td>
-<td class="org-left">[&#x2013;bed_file</td>
-<td class="org-left">BED_FILE]</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">norm_gct</td>
-<td class="org-left">sample_participant_lookup</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">vcf_chr_list</td>
-<td class="org-left">prefix</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">Generate</td>
-<td class="org-left">normalized</td>
-<td class="org-left">expression</td>
-<td class="org-left">BED</td>
-<td class="org-left">files</td>
-<td class="org-left">for</td>
-<td class="org-left">eQTL</td>
-<td class="org-left">analyses</td>
-</tr>
-
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">positional</td>
-<td class="org-left">arguments:</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">norm_gct</td>
-<td class="org-left">GCT</td>
-<td class="org-left">file</td>
-<td class="org-left">with</td>
-<td class="org-left">normalized</td>
-<td class="org-left">expression</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">sample_participant_lookup</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">Lookup</td>
-<td class="org-left">table</td>
-<td class="org-left">linking</td>
-<td class="org-left">samples</td>
-<td class="org-left">to</td>
-<td class="org-left">participants</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">vcf_chr_list</td>
-<td class="org-left">List</td>
-<td class="org-left">of</td>
-<td class="org-left">chromosomes</td>
-<td class="org-left">in</td>
-<td class="org-left">VCF</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">prefix</td>
-<td class="org-left">Prefix</td>
-<td class="org-left">for</td>
-<td class="org-left">output</td>
-<td class="org-left">file</td>
-<td class="org-left">names</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">options:</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">-h,</td>
-<td class="org-left">&#x2013;help</td>
-<td class="org-left">show</td>
-<td class="org-left">this</td>
-<td class="org-left">help</td>
-<td class="org-left">message</td>
-<td class="org-left">and</td>
-<td class="org-left">exit</td>
-</tr>
-
-
-<tr>
-<td class="org-left">-o</td>
-<td class="org-left">OUTPUT_DIR,</td>
-<td class="org-left">&#x2013;output_dir</td>
-<td class="org-left">OUTPUT_DIR</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">Output</td>
-<td class="org-left">directory</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">&#x2013;sample_id_list</td>
-<td class="org-left">SAMPLE_ID_LIST</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">File</td>
-<td class="org-left">listing</td>
-<td class="org-left">sample</td>
-<td class="org-left">IDs</td>
-<td class="org-left">to</td>
-<td class="org-left">include</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">&#x2013;feature</td>
-<td class="org-left">FEATURE</td>
-<td class="org-left">gene,</td>
-<td class="org-left">transcript</td>
-<td class="org-left">or</td>
-<td class="org-left">exon</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-
-<tr>
-<td class="org-left">&#x2013;bed_file</td>
-<td class="org-left">BED_FILE</td>
-<td class="org-left">this</td>
-<td class="org-left">is</td>
-<td class="org-left">the</td>
-<td class="org-left">bed</td>
-<td class="org-left">file</td>
-<td class="org-left">annotation</td>
-</tr>
-</tbody>
-</table>
+    usage: 02.prepare_expression.py [-h] [-o OUTPUT_DIR]
+                                    [--sample_id_list SAMPLE_ID_LIST]
+                                    [--feature FEATURE] [--bed_file BED_FILE]
+                                    norm_gct sample_participant_lookup
+                                    vcf_chr_list prefix
+    
+    Generate normalized expression BED files for eQTL analyses
+    
+    positional arguments:
+      norm_gct              GCT file with normalized expression
+      sample_participant_lookup
+                            Lookup table linking samples to participants
+      vcf_chr_list          List of chromosomes in VCF
+      prefix                Prefix for output file names
+    
+    options:
+      -h, --help            show this help message and exit
+      -o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                            Output directory
+      --sample_id_list SAMPLE_ID_LIST
+                            File listing sample IDs to include
+      --feature FEATURE     gene, transcript or exon
+      --bed_file BED_FILE   this is the bed file annotation
 
     module load htslib
     module load samtools
@@ -927,7 +264,7 @@ The modified helper script takes the following input:
 </table>
 
 
-<a id="org77a8e66"></a>
+<a id="org185028d"></a>
 
 ## Generate covariates
 
