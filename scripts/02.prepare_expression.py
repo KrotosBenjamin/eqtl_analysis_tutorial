@@ -93,6 +93,8 @@ def main():
                         help='File listing sample IDs to include')
     parser.add_argument('--feature', default='gene', help='gene, transcript or exon')
     parser.add_argument('--bed_file', help='this is the bed file annotation')
+    parser.add_argument('--flip', default=False, action="store_true",
+                        help='Flip TSS using strand information')
     args = parser.parse_args()
 
     print('Loading expression data', flush=True)
@@ -117,15 +119,18 @@ def main():
     bed_template_df = pd.read_csv(args.bed_file, sep='\t', index_col=0)\
                         .rename(columns={'seqnames':'chr'})\
                         .loc[:, ["chr", "start", "end", "gene_id", "strand"]]
-    # fix strand TSS assignment
-    gene_order = bed_template_df.index
-    bed_df_minus = bed_template_df[(bed_template_df["strand"] == "-")].copy()
-    bed_df_minus.loc[:, "end"] = bed_df_minus.end + 1
-    bed_df_plus = bed_template_df[(bed_template_df["strand"] == "+")].copy()
-    bed_df_plus.loc[:, "end"] = bed_df_plus.start + 1
-    bed_template_df = pd.concat([bed_df_plus, bed_df_minus], axis=0)\
-                        .drop(["strand"], axis=1)\
-                        .loc[gene_order, :]
+    if args.flip:
+        # fix strand TSS assignment
+        gene_order = bed_template_df.index
+        bed_df_minus = bed_template_df[(bed_template_df["strand"] == "-")].copy()
+        bed_df_minus.loc[:, "end"] = bed_df_minus.end + 1
+        bed_df_plus = bed_template_df[(bed_template_df["strand"] == "+")].copy()
+        bed_df_plus.loc[:, "end"] = bed_df_plus.start + 1
+        bed_template_df = pd.concat([bed_df_plus, bed_df_minus], axis=0)\
+                            .drop(["strand"], axis=1)\
+                            .loc[gene_order, :]
+    else:
+        bed_template_df.loc[:, "end"] = bed_template_df.start + 1
     print('bed_template_df.shape', bed_template_df.shape, flush=True)
     with open(args.vcf_chr_list) as f:
         chr_list = f.read().strip().split('\n')
