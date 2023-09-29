@@ -3600,14 +3600,22 @@ WARNING: scipy.optimize.newton failed to converge (running scipy.optimize.minimi
 done.
 #+end_example
 
-#+begin_src python :results output
+#+begin_src python :results value
   indep_df.shape
 #+end_src
 
-#+RESULTS[11989e66bfcd442c39c0ff721caa90ec4213f0a8]:
+#+RESULTS[98e00532fb88409fe633a956677a48fd33ef89d5]:
+| 18438 | 17 |
 
 #+begin_src python :results value
   indep_df.head(2)
 #+end_src
+
+#+RESULTS[bcae90fafe4595b915704a9c0d7640d606007633]:
+:         phenotype_id  num_var  beta_shape1  beta_shape2     true_df  pval_true_df  ... pval_nominal     slope  slope_se  pval_perm  pval_beta  rank
+: 0  ENSG00000225630.1      166     0.897899    14.296298  311.960754      0.004609  ...     0.001333 -6.064824  1.876778   0.086691   0.087649     1
+: 1  ENSG00000228794.8      723     1.028848    70.240906  329.431458      0.000168  ...     0.000034  3.019716  0.720023   0.008099   0.010217     1
+: 
+: [2 rows x 17 columns]
 
 ** Fine mapping with SuSiE
