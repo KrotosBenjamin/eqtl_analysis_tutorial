@@ -15,7 +15,7 @@ This tutorial consists of:
 |---------------------+--------------------------|
 | Step                | Markdown                 |
 |---------------------+--------------------------|
-| Prepare input data  | [[file::prepare_data.md]]    |
+| Prepare input data  | [[file:prepare_data.md]]     |
 | Pre-processing data | [[file:preprocess_data.md]]  |
 | cis-eQTL analysis   | [[file:cis_eqtl.mapping.md]] |
 |---------------------+--------------------------|
