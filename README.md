@@ -41,11 +41,11 @@ BrainSEQ data
 Processed data are RangedSummarizedExperiment R Objects (hg38; GENCODE
 v25).
 
-  Brain region        RNA type    Data                                                                                                                          Reference
-  ------------------- ----------- ----------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------
-  DLPFC               Poly-A      [Gene counts](https://s3.us-east-2.amazonaws.com/jaffe-nat-neuro-2018/rse_gene_BrainSeq_Phase1_hg19_TopHat2_EnsemblV75.rda)   [PMID: 30050107](https://pubmed.ncbi.nlm.nih.gov/30050107/)
-  DLPFC/Hippocampus   total RNA   [Gene counts](https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_gene_unfiltered.Rdata)                                    [PMID: 31174959](https://pubmed.ncbi.nlm.nih.gov/31174959/)
-  Caudate nucleus     total RNA   [Gene counts](https://caudate-eqtl.s3.us-west-2.amazonaws.com/caudate_brainseq_phase3_hg38_rseGene_merged_n464.rda)           [PMID: 36319771](https://pubmed.ncbi.nlm.nih.gov/36319771/)
+| Brain region        | RNA type  | Data                                                                                                                        |  Reference                     |
+| ------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+|  DLPFC              | Poly-A    | [Gene counts](https://s3.us-east-2.amazonaws.com/jaffe-nat-neuro-2018/rse_gene_BrainSeq_Phase1_hg19_TopHat2_EnsemblV75.rda) |  [PMID: 30050107](https://pubmed.ncbi.nlm.nih.gov/30050107/) |
+|  DLPFC/Hippocampus  | total RNA | [Gene counts](https://s3.us-east-2.amazonaws.com/libd-brainseq2/rse_gene_unfiltered.Rdata)                                  |  [PMID: 31174959](https://pubmed.ncbi.nlm.nih.gov/31174959/) |
+|  Caudate nucleus    | total RNA | [Gene counts](https://caudate-eqtl.s3.us-west-2.amazonaws.com/caudate_brainseq_phase3_hg38_rseGene_merged_n464.rda)         |  [PMID: 36319771](https://pubmed.ncbi.nlm.nih.gov/36319771/) |
 
 These object have counts, phenotype information, and sequencing
 information that can be used for study design.
