@@ -116,8 +116,16 @@ def main():
 
     bed_template_df = pd.read_csv(args.bed_file, sep='\t', index_col=0)\
                         .rename(columns={'seqnames':'chr'})\
-                        .loc[:, ["chr", "start", "end", "gene_id"]]
-    bed_template_df.loc[:, "end"] = bed_template_df.start + 1
+                        .loc[:, ["chr", "start", "end", "gene_id", "strand"]]
+    # fix strand TSS assignment
+    gene_order = bed_template_df.index
+    bed_df_minus = bed_template_df[(bed_template_df["strand"] == "-")].copy()
+    bed_df_minus.loc[:, "end"] = bed_df_minus.end + 1
+    bed_df_plus = bed_template_df[(bed_template_df["strand"] == "+")].copy()
+    bed_df_plus.loc[:, "end"] = bed_df_plus.start + 1
+    bed_template_df = pd.concat([bed_df_plus, bed_df_minus], axis=0)\
+                        .drop(["strand"], axis=1)\
+                        .loc[gene_order, :]
     print('bed_template_df.shape', bed_template_df.shape, flush=True)
     with open(args.vcf_chr_list) as f:
         chr_list = f.read().strip().split('\n')
