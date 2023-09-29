@@ -81,7 +81,7 @@ load_mds <- function(){
 
 get_pheno <- function(feature){    
     return(colData(memDF(feature)) |> as.data.frame() |>
-           inner_join(load_mds(), by=c("BrNum"="FID"), multiple="all") |>
+           inner_join(load_mds(), by=c("BrNum"="IID"), multiple="all") |>
            distinct(RNum, .keep_all = TRUE) |> mutate(ids=RNum) |>
            column_to_rownames("ids"))
 }
