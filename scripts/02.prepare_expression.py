@@ -93,7 +93,7 @@ def main():
                         help='File listing sample IDs to include')
     parser.add_argument('--feature', default='gene', help='gene, transcript or exon')
     parser.add_argument('--bed_file', help='this is the bed file annotation')
-    parser.add_argument('--flip', default=False, action="store_true",
+    parser.add_argument('--flip', action="store_false",
                         help='Flip TSS using strand information')
     args = parser.parse_args()
 
