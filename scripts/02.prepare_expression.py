@@ -79,6 +79,26 @@ def sort_samples(norm_df, vcf_lookup_s, sort=True):
     return norm_df
 
 
+def get_bed(bed_file, FLIP):
+        bed_template_df = pd.read_csv(args.bed_file, sep='\t', index_col=0)\
+                        .rename(columns={'seqnames':'chr'})\
+                        .loc[:, ["chr", "start", "end", "gene_id", "strand"]]
+    if FLIP:
+        # fix strand TSS assignment
+        gene_order = bed_template_df.index
+        bed_df_minus = bed_template_df[(bed_template_df["strand"] == "-")].copy()
+        bed_df_minus.loc[:, "start"] = bed_df_minus.end
+        bed_df_minus.loc[:, "end"] = bed_df_minus.end + 1
+        bed_df_plus = bed_template_df[(bed_template_df["strand"] == "+")].copy()
+        bed_df_plus.loc[:, "end"] = bed_df_plus.start + 1
+        bed_template_df = pd.concat([bed_df_plus, bed_df_minus], axis=0)\
+                            .drop(["strand"], axis=1)\
+                            .loc[gene_order, :]
+    else:
+        bed_template_df.loc[:, "end"] = bed_template_df.start + 1
+    return bed_template_df
+
+
 def main():
     parser = argparse.ArgumentParser(description='Generate normalized expression BED files for eQTL analyses')
     parser.add_argument('norm_gct',
@@ -115,22 +135,7 @@ def main():
 
     # change sample IDs to participant IDs
     norm_df.rename(columns=sample_participant_lookup_s.to_dict(), inplace=True)
-
-    bed_template_df = pd.read_csv(args.bed_file, sep='\t', index_col=0)\
-                        .rename(columns={'seqnames':'chr'})\
-                        .loc[:, ["chr", "start", "end", "gene_id", "strand"]]
-    if args.flip:
-        # fix strand TSS assignment
-        gene_order = bed_template_df.index
-        bed_df_minus = bed_template_df[(bed_template_df["strand"] == "-")].copy()
-        bed_df_minus.loc[:, "end"] = bed_df_minus.end + 1
-        bed_df_plus = bed_template_df[(bed_template_df["strand"] == "+")].copy()
-        bed_df_plus.loc[:, "end"] = bed_df_plus.start + 1
-        bed_template_df = pd.concat([bed_df_plus, bed_df_minus], axis=0)\
-                            .drop(["strand"], axis=1)\
-                            .loc[gene_order, :]
-    else:
-        bed_template_df.loc[:, "end"] = bed_template_df.start + 1
+    bed_template_df = get_bed(args.bed_file, args.flip)
     print('bed_template_df.shape', bed_template_df.shape, flush=True)
     with open(args.vcf_chr_list) as f:
         chr_list = f.read().strip().split('\n')
