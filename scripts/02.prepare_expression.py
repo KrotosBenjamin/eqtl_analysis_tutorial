@@ -80,7 +80,7 @@ def sort_samples(norm_df, vcf_lookup_s, sort=True):
 
 
 def get_bed(bed_file, FLIP):
-        bed_template_df = pd.read_csv(args.bed_file, sep='\t', index_col=0)\
+    bed_template_df = pd.read_csv(args.bed_file, sep='\t', index_col=0)\
                         .rename(columns={'seqnames':'chr'})\
                         .loc[:, ["chr", "start", "end", "gene_id", "strand"]]
     if FLIP:
